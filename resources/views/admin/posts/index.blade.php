@@ -25,8 +25,8 @@
                     <th scope="row">{{ $post->id }}</th>
                     <td>{{ $post->slug }}</td>
                     <td>{{ $post->title }}</td>
-                    <td>{{ $post->category->name ? : ''}}</td>
-                    {{--Quest'ultimo ternario serve per non stampare nulla se come categoria ha "null" perchè magari la categoria associata a quel post è stata cancellata. Se non lo facciamo da errore perchè non trova il name della categoria.--}}
+                    <td>{{ $post->category->name ?? : ''}}</td>
+                    {{--Quest'ultimo ternario serve per non stampare nulla se come categoria ha "null" perchè magari la categoria associata a quel post è stata cancellata. Se non lo facciamo da errore perchè non trova il name della categoria. Tipo isset()--}}
 
                     <td>
                         <a href="{{ route('admin.posts.show', ['post' => $post]) }}" class="btn btn-primary">Visita</a>

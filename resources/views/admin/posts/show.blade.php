@@ -2,7 +2,11 @@
 
 @section('content')
     <h1>{{ $post->title }}</h1>
-    <h3>Categoria: {{ $post->category->name }}</h3>
+
+    @if (isset($post->category->name))
+        <h3>Categoria: {{ $post->category->name }}</h3>
+    @endif
+
     <img src="{{ $post->image }}" alt="{{ $post->title }}">
     <img src="{{ asset('storage/' . $post->uploaded_img) }}" alt="{{ $post->title }}">
     <p>
