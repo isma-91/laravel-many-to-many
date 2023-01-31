@@ -15,12 +15,13 @@ class UpdatePostsAddCategoriesRelation extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             //Colonna chiave esterna, ricordarsi di mettere lo stesso dato utilizzato per l'ID nella tabella di "origine", specificandolo
-            $table->unsignedBigInteger('category_id')->after('id')->default(1);
+            $table->unsignedBigInteger('category_id')->after('id')->nullable();
 
             //Relazione
             $table->foreign('category_id') //colonna che rappresenta la Foreign Key
                 ->references('id') //dato da prendere dalla tabella di origine da utilizzare come foreign key nella tabella posts
-                ->on('categories'); //da che tabella stiamo prendendo tale dato
+                ->on('categories') //da che tabella stiamo prendendo tale dato
+                ->nullOnDelete(); //Per poter cancellare le categorie e settare "null" i posts che avevano quella categoria
         });
     }
 
