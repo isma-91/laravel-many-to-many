@@ -10,4 +10,8 @@ class Tag extends Model
     use Slugger;
 
     public $timestamps = false;
+
+        public function posts(){
+        return $this->belongsToMany('App\Post'); // Relazione molti a molti
+    }
 }

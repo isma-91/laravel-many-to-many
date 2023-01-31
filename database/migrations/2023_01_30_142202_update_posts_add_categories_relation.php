@@ -17,7 +17,7 @@ class UpdatePostsAddCategoriesRelation extends Migration
             //Colonna chiave esterna, ricordarsi di mettere lo stesso dato utilizzato per l'ID nella tabella di "origine", specificandolo
             $table->unsignedBigInteger('category_id')->after('id')->nullable();
 
-            //Relazione sintassi "lunga"
+            //chiave esterna sintassi "lunga"
             $table->foreign('category_id') //colonna che rappresenta la Foreign Key
                 ->references('id') //dato da prendere dalla tabella di origine da utilizzare come foreign key nella tabella posts
                 ->on('categories') //da che tabella stiamo prendendo tale dato

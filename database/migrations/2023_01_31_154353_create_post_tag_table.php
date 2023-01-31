@@ -14,7 +14,7 @@ class CreatePostTagTable extends Migration
     public function up()
     {
         Schema::create('post_tag', function (Blueprint $table) {
-            $table->foreignId('post_id')->constrained(); // Relazioni sintassi abbreviata
+            $table->foreignId('post_id')->constrained(); // chiave esterna sintassi abbreviata
             $table->foreignId('tag_id')->constrained();
         });
     }

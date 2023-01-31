@@ -16,6 +16,10 @@ class Post extends Model
         return $this->belongsTo('App\Category'); //Esprimere il nome del model completo col namespace.
     }
 
+    public function tags(){
+        return $this->belongsToMany('App\Tag'); // Relazione molti a molti
+    }
+
     //funzione per usare lo slug anzichè l'id nel link
     public function getRouteKeyName() {
         return 'slug';
