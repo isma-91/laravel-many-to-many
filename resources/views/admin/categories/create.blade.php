@@ -1,22 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-        {{-- TODO: Aggiungere le validation e l'"old") --}}
 
-        <h2>Crea un Post</h2>
+        <h2>Crea una categoria</h2>
         <form method="post" action="{{ route('admin.categories.store') }}" class="needs-validation" novalidate>
             @csrf
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}">
-                <div class="invalid-feedback">
-                    @error('slug')
-                        <ul>
-                            @foreach ($errors->get('slug') as $message)
-                                <li>{{ $message }}</li>
-                            @endforeach
-                        </ul>
-                    @enderror
+                <div class="row">
+                    <div class="col-9">
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}">
+                        <div class="invalid-feedback">
+                            @error('slug')
+                                <ul>
+                                    @foreach ($errors->get('slug') as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-success">Genera Slug</button>
+                    </div>
                 </div>
             </div>
 
