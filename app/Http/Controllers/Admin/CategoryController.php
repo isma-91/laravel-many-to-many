@@ -136,6 +136,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        //impostare una categoria di default da poter dare a tutti i posts che "perdono" la categoria perchè viene cancellata
+        $defaultCategory = Category::where('slug', 'nessuna-categoria')->first();
+        //Facciamo un ciclo su tutti i post collegati ad una categoria, per ciascun post si va a cambiare la category. Impostando ad ogni post la defaultCategory che abbiamo creato prima con il suo id.
+        foreach ($category->posts as $post) {
+            $post->category_id = $defaultCategory->id;
+            $post->update();
+        }
+
         $category->delete();
 
         return redirect()->route('admin.categories.index')->with('success_delete', $category);
